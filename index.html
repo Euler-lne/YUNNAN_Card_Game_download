@@ -4,35 +4,401 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的游戏下载</title>
+    <title>昆明双扣游戏下载</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
         }
 
-        a {
+        .download-buttons {
+            margin: 30px 0;
+        }
+
+        .download-buttons a {
             display: inline-block;
-            margin: 20px;
-            padding: 10px 20px;
+            margin: 10px 20px;
+            padding: 12px 24px;
             background-color: #007bff;
             color: white;
             text-decoration: none;
             border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.2s;
         }
 
-        a:hover {
+        .download-buttons a:hover {
             background-color: #0056b3;
         }
+
+        .rules {
+            text-align: left;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .rules h2 {
+            text-align: center;
+            color: #333;
+            cursor: pointer;
+            user-select: none;
+            margin: 0 0 10px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .rules h2:hover {
+            color: #007bff;
+        }
+
+        .rules-content {
+            display: none;
+            overflow-x: auto;
+        }
+
+        .rules-content.show {
+            display: block;
+        }
+
+        .rules table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .rules th,
+        .rules td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .rules th {
+            background-color: #f2f2f2;
+        }
+
+        .rules blockquote {
+            background: #f9f9f9;
+            border-left: 4px solid #007bff;
+            margin: 15px 0;
+            padding: 10px 20px;
+            color: #555;
+        }
+
+        .rules img {
+            max-width: 100%;
+            margin: 10px 0;
+        }
+
+        .rule-section {
+            margin-bottom: 20px;
+        }
+
+        .rule-section h3 {
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
     </style>
+    <script>
+        function toggleRules() {
+            var content = document.getElementById('rulesContent');
+            content.classList.toggle('show');
+        }
+    </script>
 </head>
 
 <body>
-    <h1>我的游戏</h1>
-    <p>选择你的平台下载：</p>
-    <a href="windows.zip" download>下载 Windows 版 (.zip)</a>
-    <a href="YunNan Card Game.apk" download>下载 Android 版 (.apk)</a>
+    <h1>昆明双扣 · 棋牌游戏</h1>
+    <p>选择你的平台下载游戏：</p>
+
+    <div class="download-buttons">
+        <a href="windows.zip" download>💻 下载 Windows 版 (.zip)</a>
+        <a href="YunNan Card Game.apk" download>📱 下载 Android 版 (.apk)</a>
+        <a href="Rule/双扣规则.pdf" download>📖 下载规则 PDF 版</a>
+    </div>
+
+    <div class="rules">
+        <h2 onclick="toggleRules()">📜 游戏规则（点击展开/收起）</h2>
+        <div id="rulesContent" class="rules-content">
+            <!-- 规则内容开始 -->
+            <div class="rule-section">
+                <h3>一、基础信息</h3>
+                <ul>
+                    <li><strong>牌</strong>：两副扑克（108 张），每人 25 张，底牌 8 张。</li>
+                    <li><strong>人</strong>：4 人，对家一队（座位交叉）。</li>
+                    <li><strong>分</strong>：5（5 分）、10（10 分）、K（10 分），总共 200 分。</li>
+                    <li><strong>目标</strong>：守分或抢分，先打过 A 的一方获胜。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>二、什么是主牌？</h3>
+                <ul>
+                    <li><strong>常主（固定主牌）</strong>：大王、小王、黑桃 A，永远是主牌。</li>
+                    <li><strong>级牌（机动主牌）</strong>：当前打几，四个花色的这几张牌就是级牌。<br>
+                        升级顺序：<strong>2 → 5 → 10 → J → Q → K → A → 2</strong>（循环）<br>
+                        必打级牌：<strong>2、J、A</strong> 不能跳过。
+                    </li>
+                    <li><strong>主牌花色</strong>：亮主时确定的那个花色，该花色的所有牌也都是主牌。</li>
+                </ul>
+                <p><strong>一句话</strong>：主牌 = 常主 + 级牌（四花色） + 主牌花色的所有牌。</p>
+            </div>
+
+            <div class="rule-section">
+                <h3>三、牌力大小顺序（最重要！）</h3>
+                <h4>1. 主牌大小顺序（以打 2、方块为主为例）</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>顺序</th>
+                            <th>牌</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1（最大）</strong></td>
+                            <td><strong>方块 5</strong></td>
+                            <td><strong>中心 5</strong>，整局最大</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>大王</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>小王</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>黑桃 A</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><strong>方块 2</strong></td>
+                            <td>主牌花色的级牌</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><strong>黑桃 2、红桃 2、梅花 2</strong></td>
+                            <td>其他花色的级牌，这三张一样大</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>方块 K</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>方块 Q</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>方块 J</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>方块 10</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>方块 9</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>方块 8</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>方块 7</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>方块 6</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>方块 4</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>方块 3</td>
+                            <td>最小</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>记住</strong>：中心 5（亮主花色的 5） > 大王 > 小王 > 黑桃 A > 主级牌 > 其他级牌 > 主花色 A…K…3</p>
+
+                <h4>2. 副牌大小顺序（所有非主牌花色）</h4>
+                <p><strong>完整顺序</strong>：<strong>A > K > Q > J > 10 > 9 > 8 > 7 > 6 > 5 > 4 > 3 > 2</strong></p>
+                <blockquote>
+                    <strong>说明</strong>：副牌中不包含当前级牌（因为级牌已归入主牌），但 5、10、K 作为分牌正常存在。<br>
+                    例：打 2 时，副牌中没有 2；打 5 时，副牌中没有 5，此时 5 全变为主牌但仍带 5 分。
+                </blockquote>
+            </div>
+
+            <div class="rule-section">
+                <h3>四、亮主与庄家</h3>
+                <ul>
+                    <li><strong>亮主</strong>：摸牌时亮出一张当前级牌，你成为庄家，该花色为主牌。</li>
+                    <li><strong>定主</strong>：亮出一对级牌，直接定死花色，别人不能再反花色。</li>
+                    <li><strong>反主</strong>：定主前，别人亮出另一对级牌，可以反主，新花色成为主牌。</li>
+                    <li><strong>无人亮主</strong>：需要翻看底牌，由当前先摸牌的人，指定“遇大”或“遇小”（即翻开底牌决定主牌花色）。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>五、出牌规则</h3>
+                <ol>
+                    <li><strong>必须跟花色</strong>：别人出什么花色，你也要出这个花色。</li>
+                    <li><strong>没有该花色</strong>：
+                        <ul>
+                            <li><strong>垫牌</strong>：随便出，不参与竞争。</li>
+                            <li><strong>毙牌</strong>：出主牌，必须<strong>牌型完全一样</strong>（对方出单张，你也要出单张主牌；对方出对子，你也要出对子主牌）。</li>
+                        </ul>
+                    </li>
+                    <li><strong>牌不够</strong>：没有对子/没有连对，有多少出多少，剩下的用其他牌垫。这种情况属于垫牌，不参与比较。</li>
+                </ol>
+            </div>
+
+            <div class="rule-section">
+                <h3>六、拖拉机（连对）</h3>
+                <ul>
+                    <li><strong>定义</strong>：花色相同、点数相连的至少两对牌。</li>
+                    <li><strong>主牌拖拉机</strong>：可以跨类别，只要在主牌顺序中相邻。<br>
+                        例（打 2 方块主）：方块 5+方块 5 + 大王+大王 构成拖拉机。</li>
+                    <li><strong>副牌拖拉机</strong>：按副牌顺序（A-K-Q-…-2）相连即可，除去当前级牌。<br>
+                        例（打 10 方块主）：梅花 99+梅花 JJ 属于连对（因为 10 不在副牌中，9 和 J 相邻）。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>七、甩牌</h3>
+                <ul>
+                    <li><strong>条件</strong>：你确信手上的这几张牌，在当前花色中都是最大的，可以一次性全甩出去。</li>
+                    <li><strong>失败</strong>：如果判断错误，甩出的牌中有不是最大的，必须打出其中最小的一张，其余收回，罚 5 分给对方。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>八、计分与抠底</h3>
+                <h4>1. 得分</h4>
+                <ul>
+                    <li>每轮谁牌最大，谁拿走这一轮的所有分牌（5/10/K）。</li>
+                    <li>庄家方赢的分<strong>作废</strong>，闲家赢的分<strong>累计</strong>。</li>
+                </ul>
+                <h4>2. 抠底（最后一轮）</h4>
+                <ul>
+                    <li>如果最后一轮<strong>闲家牌最大</strong>，就翻开底牌，底牌里的分<strong>翻倍</strong>后加给闲家。</li>
+                    <li><strong>翻倍规则</strong>：最后一轮闲家出几张牌，底牌分就翻几倍（1 张不翻倍，2 张×2，4 张×4，依此类推）。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>九、升级与胜负</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>闲家得分</th>
+                            <th>结果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>0 分</strong></td>
+                            <td>庄家方升 <strong>3 级</strong>（大光）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1 ~ 39 分</strong></td>
+                            <td>庄家方升 <strong>2 级</strong>（小光）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>40 ~ 79 分</strong></td>
+                            <td>庄家方升 <strong>1 级</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>80 分</strong></td>
+                            <td><strong>强庄</strong>（庄家继续坐庄，级牌不变）</td>
+                        </tr>
+                        <tr>
+                            <td><strong>81 ~ 119 分</strong></td>
+                            <td>闲家<strong>上台</strong>（庄家下台），级牌不变</td>
+                        </tr>
+                        <tr>
+                            <td><strong>120 ~ 159 分</strong></td>
+                            <td>闲家上台，且闲家<strong>升 2 级</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>160 ~ 200 分</strong></td>
+                            <td>闲家上台，且闲家<strong>升 3 级</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>轮庄</h4>
+                <ul>
+                    <li>庄家升级或强庄 → 下一局由<strong>对家</strong>坐庄。</li>
+                    <li>闲家上台 → 下一局由<strong>下家</strong>坐庄。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>十、J 和 A 的特殊降级（过沟、戴帽）</h3>
+                <h4>打 J 时</h4>
+                <ul>
+                    <li>如果闲家得分 <strong>大于 80 分</strong>，且最后一轮用 <strong>J 抠底</strong>，则庄家方直接 <strong>降级到 2</strong> 并下庄。
+                    </li>
+                    <li>如果闲家得分 <strong>小于 80 分</strong>，且最后一轮用 <strong>J 抠底</strong>，则庄家方按照正常得分升级（即根据闲家得分按升级表处理）。</li>
+                    <li>其他情况（未用 J 抠底或得分等于 80 分），按正常升级规则进行。</li>
+                </ul>
+                <h4>打 A 时</h4>
+                <ul>
+                    <li>如果闲家得分 <strong>大于 80 分</strong>，且最后一轮用 <strong>A 抠底</strong>，则庄家方直接 <strong>降级到 J</strong> 并下庄。
+                    </li>
+                    <li>如果闲家得分 <strong>小于 80 分</strong>，且最后一轮用 <strong>A 抠底</strong>，则庄家方 <strong>直接赢得比赛</strong>（打过 A）。
+                    </li>
+                    <li>其他情况（未用 A 抠底或得分等于 80 分），按正常升级规则进行。</li>
+                </ul>
+            </div>
+
+            <div class="rule-section">
+                <h3>附录：牌级参考</h3>
+                <p>被框起来的是主牌</p>
+                <img src="Rule/imgs/image.png" alt="牌级参考1" style="max-width:100%">
+                <img src="Rule/imgs/image-1.png" alt="牌级参考2" style="max-width:100%">
+                <img src="Rule/imgs/image-2.png" alt="牌级参考3" style="max-width:100%">
+            </div>
+            <!-- 规则内容结束 -->
+        </div>
+    </div>
+
+    <div class="footer-note">
+        如有疑问，欢迎反馈。<br>
+        游戏规则 PDF 版本位于 <strong>Rule/双扣规则.pdf</strong>，可直接下载保存。
+    </div>
 </body>
 
 </html>
