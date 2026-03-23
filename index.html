@@ -35,7 +35,6 @@
             background-color: #0056b3;
         }
 
-        /* 新增：下载提示样式 */
         .download-notice {
             background-color: #fff3cd;
             border: 1px solid #ffeeba;
@@ -123,6 +122,52 @@
             font-size: 14px;
             color: #777;
         }
+
+        /* 手机竖屏优化 */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .download-buttons a {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                font-size: 16px;
+            }
+
+            .rules {
+                padding: 15px;
+            }
+
+            .rules h2 {
+                font-size: 20px;
+            }
+
+            .rule-section h3 {
+                font-size: 18px;
+            }
+
+            .rules table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            .rules table td,
+            .rules table th {
+                white-space: normal;
+            }
+
+            .rules img {
+                width: 100%;
+                height: auto;
+            }
+
+            .footer-note {
+                font-size: 12px;
+            }
+        }
     </style>
     <script>
         function toggleRules() {
@@ -154,7 +199,7 @@
                 <h3>一、基础信息</h3>
                 <ul>
                     <li><strong>牌</strong>：两副扑克（108 张），每人 25 张，底牌 8 张。</li>
-                    <li><strong>人</strong>：4 人，对家一队（座位交叉）。</li>
+                    <li><strong>人</strong>：4 人，对家一队（座位交叉）。<strong>游戏仅支持4人，过多过少均不可开始游戏。</strong></li>
                     <li><strong>分</strong>：5（5 分）、10（10 分）、K（10 分），总共 200 分。</li>
                     <li><strong>目标</strong>：守分或抢分，先打过 A 的一方获胜。</li>
                 </ul>
@@ -358,7 +403,7 @@
                         </tr>
                         <tr>
                             <td><strong>80 分</strong></td>
-                            <td><strong>强庄</strong>（庄家继续坐庄，级牌不变）</td>
+                            <td><strong>抢庄</strong>（庄家继续坐庄，级牌不变）</td>
                         </tr>
                         <tr>
                             <td><strong>81 ~ 119 分</strong></td>
@@ -400,12 +445,68 @@
                 </ul>
             </div>
 
+            <!-- 新增：游戏说明（优化排版） -->
             <div class="rule-section">
-                <h3>附录：牌级参考</h3>
+                <h3>附录：游戏说明与牌型示意</h3>
+                <h4>1. 游戏模式</h4>
+                <p>游戏支持 <strong>局域网联机</strong> 和 <strong>公网联机（一年期限）</strong> 两种方式。</p>
+                <h5>联机大厅（公网联机）</h5>
+                <ul>
+                    <li>进入联机大厅后，可以看到其他玩家创建的房间。</li>
+                    <li>选择房间进入，或自己创建房间并设置密码，防止陌生人加入。</li>
+                    <li>创建房间后需等待其他玩家加入，<strong>满4人</strong>即可开始游戏。</li>
+                </ul>
+                <p><img src="Rule/imgs/联机大厅界面.png" alt="联机大厅界面"></p>
+                <h5>局域网游戏</h5>
+                <ul>
+                    <li><strong>创建游戏</strong>：设置端口号（默认 7777），等待同一局域网下的玩家加入。</li>
+                    <li><strong>加入游戏</strong>：输入主机的局域网 IP 和端口号即可。</li>
+                    <li>如果开启了内网穿透服务，也可以跨局域网进行联机。</li>
+                </ul>
+                <p><img src="Rule/imgs/局域网游戏界面.png" alt="局域网游戏界面"></p>
+
+                <h4>2. 游戏准备界面（房间）</h4>
+                <p><img src="Rule/imgs/游戏加载房.png" alt="游戏加载房"></p>
+                <ul>
+                    <li><strong>玩家名称</strong>：随机分配，<strong>不可修改</strong>。</li>
+                    <li><strong>头像</strong>：根据进入顺序自动分配，<strong>不可修改</strong>。</li>
+                    <li><strong>头像边框颜色</strong>：
+                        <ul>
+                            <li>🟢 绿色：当前玩家（自己）。</li>
+                            <li>⚫ 黑色：其他玩家，位置未锁定。</li>
+                            <li>🔴 红色：位置已锁定。</li>
+                        </ul>
+                    </li>
+                    <li><strong>位置交换</strong>：在位置未锁定或为空时，点击对应位置/玩家即可交换座位。</li>
+                    <li><strong>房主权限</strong>：
+                        <ul>
+                            <li>可以调整队伍等级、第一轮庄家规则（或抢庄）。</li>
+                            <li><strong>满4人后</strong>，房主点击“开始游戏”进入对局。</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>3. 游戏对局界面</h4>
+                <p><img src="Rule/imgs/游戏界面.png" alt="游戏界面"></p>
+                <ul>
+                    <li>左下角头像和名字为当前玩家（本人）。</li>
+                    <li>上方玩家信息为队友信息。</li>
+                    <li>庄家头像旁会显示 <strong>皇冠标志</strong>。</li>
+                    <li>当前出牌的玩家，其头像边框会变为绿色。</li>
+                </ul>
+                <p><img src="Rule/imgs/庄家与出牌提示.png" alt="庄家与出牌提示"></p>
+
+                <h4>4. 注意事项</h4>
+                <ul>
+                    <li>如果房主离开游戏，房间将自动解散。</li>
+                    <li>非房主玩家离开后可<strong>重连</strong>返回对局。</li>
+                </ul>
+
+                <h4>部分牌型示意</h4>
                 <p>被框起来的是主牌</p>
-                <img src="Rule/imgs/image.png" alt="牌级参考1" style="max-width:100%">
-                <img src="Rule/imgs/image-1.png" alt="牌级参考2" style="max-width:100%">
-                <img src="Rule/imgs/image-2.png" alt="牌级参考3" style="max-width:100%">
+                <p><img src="Rule/imgs/image.png" alt="主牌示意1"></p>
+                <p><img src="Rule/imgs/image-1.png" alt="主牌示意2"></p>
+                <p><img src="Rule/imgs/image-2.png" alt="主牌示意3"></p>
             </div>
             <!-- 规则内容结束 -->
         </div>
